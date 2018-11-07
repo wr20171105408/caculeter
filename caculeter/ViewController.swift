@@ -62,13 +62,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func bouttonadd(_ sender: Any) {
-        jiannum = 1
         temp = Double (result.text!)!
         result.text = ""
         num = 1
     }
     
     @IBAction func bouttonjian(_ sender: Any) {//当jiannum是1的时候“-”代表负号，jiannum是2的时候“-”代表减法
+        if result.text == ""
+        {
+            jiannum = 1
+        }else if result.text != ""
+        {
+            jiannum = 2
+        }
         if jiannum == 1
         {
             result.text = result.text! + "-"
@@ -78,19 +84,16 @@ class ViewController: UIViewController {
             temp = Double (result.text!)!
             result.text = ""
             num = 2
-            jiannum = 1
         }
     }
     
     @IBAction func bouttoncheng(_ sender: Any) {
-        jiannum = 1
         temp = Double (result.text!)!
         result.text = ""
         num = 3
     }
     
     @IBAction func bouttonchu(_ sender: Any) {
-        jiannum = 1
         temp = Double (result.text!)!
         result.text = ""
         num = 4
