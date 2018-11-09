@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     var temp : Double? //存储变量
     @IBOutlet weak var result: UITextField!
-    
     var fuhao : String?//判定符号
     var jiannum : Int = 1
     var num = 0
