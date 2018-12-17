@@ -10,15 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet var result: UITextField!
-    var re = 0//判别输入之前是否存在符号
+    var re = 0//判别输入符号之前是否存在数
     var b = 0 //用来判别小数点是否已出现
-    var op = 0 //用来判断运算符
     var add = 0//判定运算符优先级
-    var cunfuhao:String?
-    var lnum :Double?
-    var fnum :Double?
-    var snum : Double?
-    
+    var num:Double?//数
+    var op:Int?//现在运算符
+    var temp:Int? //后一个运算符
     public struct Stack<T> {//堆栈
         fileprivate var array = [T]()
         public var isEmpty: Bool {
@@ -37,8 +34,11 @@ class ViewController: UIViewController {
             return array.last
         }
     }
-    var numstack = Stack<Double>()//存储操作数的堆栈
-    var opstack = Stack<String>()//存储操作符号的堆栈
+    var numstack = Stack<Double>()//存储数字的堆栈
+    var opstack = Stack<Int>()//存储操作数的堆栈
+    var tnumstack = Stack<Double>()//计算数字的堆栈
+    var topstack = Stack<Int>()//计算操作符的堆栈
+    
     
     @IBAction func number0(_ sender: Any) {
         if re == 1 {
@@ -130,47 +130,142 @@ class ViewController: UIViewController {
     
     @IBAction func gui0(_ sender: Any) {
         result.text = ""
+        num = 0
         re = 0
     }
     
     
     @IBAction func add(_ sender: Any) {//加
+        opstack.push(1)
         numstack.push(Double(result.text!)!)
-        opstack.push("+")
-        result.text=""
+        result.text = ""
     }
     
     @IBAction func subtract(_ sender: Any) {//减
+        opstack.push(2)
         numstack.push(Double(result.text!)!)
-        opstack.push("-")
-        result.text=""
+        result.text = ""
     }
     
     @IBAction func multiply(_ sender: Any) {//乘\
+        opstack.push(3)
         numstack.push(Double(result.text!)!)
-        opstack.push("*")
-        result.text=""
+        result.text = ""
     }
     
     @IBAction func divide(_ sender: Any) {//除
+        opstack.push(4)
         numstack.push(Double(result.text!)!)
-        opstack.push("/")
-        result.text=""
+        result.text = ""
     }
     @IBAction func result(_ sender: Any) {
         numstack.push(Double(result.text!)!)
-        cunfuhao = opstack.pop()
-        while numstack.count != 0 {
-            if cunfuhao == "+"
-            {
-                fnum = Double(numstack.pop()!)
-                snum = Double(numstack.pop()!)
-                lnum = fnum! + snum!
-            }
-            print(numstack.count)
+        while numstack.isEmpty == false {
+            tnumstack.push(numstack.pop()!)
         }
-        result.text = "\(lnum!)"
-        numstack.push(Double(result.text!)!)
+        while opstack.isEmpty == false {
+             topstack.push(opstack.pop()!)
+        }
+        while topstack.isEmpty == false {
+            op = topstack.pop()
+            if op == 1
+            {
+                if topstack.isEmpty == false//计算优先级
+                {
+                    temp = topstack.pop()!
+                    topstack.push(temp!)
+                }else{
+                    temp = 0
+                }
+                
+                if temp == 3 || temp == 4
+                {
+                    if temp == 3{
+                        //1 + 2 * 3
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        num = numstack.pop()!
+                        num = numstack.pop()! * num!
+                        
+                        tnumstack.push(num!)
+                        tnumstack.push(numstack.pop()!)
+                        _ = topstack.pop()!//出已算符号
+                        topstack.push(op!)
+                    }else if temp == 4{
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        num = numstack.pop()!
+                        num = numstack.pop()! / num!
+                        
+                        tnumstack.push(num!)
+                        tnumstack.push(numstack.pop()!)
+                        _ = topstack.pop()!//出已算符号
+                        topstack.push(op!)
+                    }
+                    
+                }else{
+                    num = tnumstack.pop()!
+                    num = num! + tnumstack.pop()!
+                    tnumstack.push(num!)
+                }
+            }else if op == 2
+            {
+                if topstack.isEmpty == false//计算优先级
+                {
+                    temp = topstack.pop()!
+                    topstack.push(temp!)
+                }else{
+                    temp = 0
+                }
+                
+                if temp == 3 || temp == 4
+                {
+                    if temp == 3{
+                        //1 + 2 * 3
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        num = numstack.pop()!
+                        num = numstack.pop()! * num!
+                        
+                        tnumstack.push(num!)
+                        tnumstack.push(numstack.pop()!)
+                        _ = topstack.pop()!//出已算符号
+                        topstack.push(op!)
+                    }else if temp == 4{
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        numstack.push(tnumstack.pop()!)
+                        num = numstack.pop()!
+                        num = numstack.pop()! / num!
+                        
+                        tnumstack.push(num!)
+                        tnumstack.push(numstack.pop()!)
+                        _ = topstack.pop()!//出已算符号
+                        topstack.push(op!)
+                    }
+                    
+                }else{
+                    num = tnumstack.pop()!
+                    num = num!-tnumstack.pop()!
+                    tnumstack.push(num!)
+                }
+            }else if op == 3
+            {
+                num = tnumstack.pop()!
+                num = num!*tnumstack.pop()!
+                tnumstack.push(num!)
+            }else if op == 4
+            {
+                num = tnumstack.pop()!
+                num = num!/tnumstack.pop()!
+                tnumstack.push(num!)
+            }
+        }
+        
+        result.text = "\(tnumstack.pop()!)"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
