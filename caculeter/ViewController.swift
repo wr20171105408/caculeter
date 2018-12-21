@@ -160,6 +160,7 @@ class ViewController: UIViewController {
         num = 0
         re = 0
         opera = 1
+        b = 0
     }
     
     
@@ -204,9 +205,14 @@ class ViewController: UIViewController {
     }
     @IBAction func result(_ sender: Any) {
         if result.text! == "" {
-            result.text = ""
-            while numstack.isEmpty == false{
-                _ = numstack.pop()!
+            result.text = "\(numstack.pop()!)"
+            while opstack.isEmpty == false{
+                _ = opstack.pop()!
+            }
+        }else if numstack.isEmpty == true && result.text! != ""{
+             result.text = ""
+            while opstack.isEmpty == false{
+                _ = opstack.pop()!
             }
         }else{
             numstack.push(Double(result.text!)!)
