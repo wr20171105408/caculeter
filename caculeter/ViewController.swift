@@ -139,7 +139,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func dian(_ sender: Any) {
+    @IBAction func point(_ sender: Any) {
         if result.text! != "" && b == 0{
             result.text = result.text! + "."
             b = 1
@@ -149,18 +149,25 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func fuhao(_ sender: Any) {
+    @IBAction func sign(_ sender: Any) {
         if result.text! != ""{
             result.text = "\(-Double(result.text!)!)"
         }
     }
     
-    @IBAction func gui0(_ sender: Any) {
+    @IBAction func clear(_ sender: Any) {
         result.text = ""
         num = 0
         re = 0
         opera = 1
         b = 0
+        while opstack.isEmpty == false {
+            var a = opstack.pop()!
+        }
+        while numstack.isEmpty == false {
+            var b = numstack.pop()!
+            
+        }
     }
     
     

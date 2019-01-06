@@ -88,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="."/>
                                 <connections>
-                                    <action selector="dian:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9xt-q0-LAt"/>
+                                    <action selector="point:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8tv-Ka-ZlM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga8-cN-U7E">
@@ -161,7 +161,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="fuhao:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z2J-1B-no8"/>
+                                    <action selector="sign:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DV3-V3-Pcu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKm-aJ-fhv">
@@ -172,7 +172,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="gui0:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vc0-hV-wfM"/>
+                                    <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XI1-jR-5Bl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F91-iN-Er7">
@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="-1175"/>
+            <point key="canvasLocation" x="220" y="-1191"/>
         </scene>
     </scenes>
 </document>
